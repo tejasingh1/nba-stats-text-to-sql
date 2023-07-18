@@ -1,0 +1,21 @@
+TABLE trek_health_sample(
+ Payer //insurance company     
+ Region //region of services provided
+ Network //type of healthcare provider network
+ EIN //employer identification number
+ NPI_List // natinoal provider identifier list
+ NPI_List_Length
+ Taxonomy //Provider's specialty in the healthcare industry     
+ Code //Service code for the services provided, based on CPT
+ CodeType
+ Modifier_List //appended to CPT to provide additional info about procedure 
+ Bundled_Code_List //list of bundled cpt codes
+ Billing_Class //type of billing for the services 
+ Place_Of_Service_List //where the healthcare service was provided
+ Negotiation_Type //How the rate was determined
+ Arrangement //How the payment arrangement is set up
+ Rate //Payment rate for the service 
+ Matched_On //Basis on which the payer and provider were matched 
+ Entity_Name //Name of practice providing the service
+ Entity_Address // full address of practice
+)
