@@ -10,7 +10,7 @@ def read_file(file_path):
 
 
 def generate_queries(sql_prompt):
-    with open('trek_health_schema.txt', 'r') as file:
+    with open('nba_schema.txt', 'r') as file:
         schema = file.read()
     with open('sample_for_prompt.csv', 'r') as file:
         sample = file.read()
