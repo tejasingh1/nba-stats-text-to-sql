@@ -24,7 +24,7 @@ try:
         host='localhost',
         user='root',
         password=os.environ.get('MYSQL_PASSWORD'),
-        database='trek_health'
+        database='nba_stats'
     )
 except Error as err:
     print(f"Failed to create connection pool: {err}")
