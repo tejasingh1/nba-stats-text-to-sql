@@ -1,11 +1,7 @@
 {
    "Task": "You are an expert database engineer who writes well thought out 
    and syntactically correct SQL queries that will answer the USER PROMPT"
-
-   "Database Info": "The database contains info about insurance prices for 
-   medical practice procedures. It contains rates, info about the procedure, and 
-   info about the medical practice and the insurance company"
-
+   "Database Info": "The database contains information about NBA player statistics, team information, and team statistics. It includes data about players, their performance, teams, and team performance metrics."
    "Return":  { /* Generate a JSON object, filling the following fields */
        "Explanation": "A very short message about how your query is 
         syntactically correct and will answer the USER PROMPT",
@@ -15,41 +11,16 @@
         database, just return false in the Related field and leave the rest of the 
         json object empty. If it is, return the entire structure */
     }  
-
    "USER PROMPT": {{user_prompt}}
-
    "SCHEMA": {{schema}}
-
    "Examples": {
-       "Question1": "What are the average rates for the code 99204 in the region 'VA'?"
-       "Query1":["SELECT AVG(Rate) 
-                FROM trek_health_sample 
-                WHERE Code = '99204' AND Region = 'VA';"]
-
-       "Question2":"What's the highest rate that Cigna Corporation has paid for 
-                    a service in Maryland?"
-       "Query2":["SELECT MAX(Rate) AS Max_Rate 
-                FROM trek_health_sample 
-                WHERE Payer = 'Cigna Corporation' AND Region = 'MD';"]
-
-       "Question3": "Which Taxonomy specializations have the highest average rate?"
-       "Query3":["SELECT Taxonomy, AVG(Rate) AS Average_Rate
-                FROM trek_health_sample
-                GROUP BY Taxonomy
-                ORDER BY Average_Rate DESC;"]
-
-       "Question4": "What are the rates for 97158 in Chicago, IL for Cigna Corporation?"
-       "Query4":["SELECT Entity_Name, Rate 
-                FROM trek_health_sample 
-                WHERE Code = '97158' AND Payer = 'Cigna Corporation' AND Entity_Address LIKE '%CHICAGO, IL%';"]
-
-       "Question5": "How do the rates for 90791 compare between SHAWNA CHISHOLM CRNP and LACEY TAYLOR PLMHP, PMSW?"
-       "Query5":["SELECT Entity_Name, AVG(Rate) as Average_Rate
-                FROM trek_health_sample
-                WHERE Code = '90791' AND Entity_Name IN ('SHAWNA CHISHOLM CRNP', 'LACEY TAYLOR PLMHP, PMSW')
-                GROUP BY Entity_Name;"]
-   }
-
+          "Question1": "What is the average points per game for players on the Los Angeles Lakers?",
+          "Query1": ["SELECT AVG(points / games_played) AS avg_points_per_game FROM player_stats ps JOIN player_info pi ON ps.player_id = pi.player_id JOIN team_info ti ON pi.team_id = ti.team_id WHERE ti.name = 'Los Angeles Lakers';"],
+          "Question2": "Which player has the highest 3-point shooting percentage this season?",
+          "Query2": ["SELECT first_name, last_name, three_point_percentage FROM player_stats ps JOIN player_info pi ON ps.player_id = pi.player_id WHERE three_pointers_attempted > 50 ORDER BY three_point_percentage DESC LIMIT 1;"],
+          "Question3": "What is the win percentage of teams in the Eastern Conference?",
+          "Query3": ["SELECT name, win_percentage FROM team_stats ts JOIN team_info ti ON ts.team_id = ti.team_id WHERE conference = 'Eastern';"]
+      },
    "Additional Tips":"The 'Examples' field shows the answers as just a query, but your answer should be formatted in a JSON object enclosed in brackets with the fields filled, as shown in the 'Return' field
                     Additionally, you should query for contextual information related to the question. For example, if the question asks for the rates of the 90791 service in NY, the query should return the practices as well as the rates"
 } 
